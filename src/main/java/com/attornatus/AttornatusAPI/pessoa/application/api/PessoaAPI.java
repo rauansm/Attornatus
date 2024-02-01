@@ -1,7 +1,6 @@
 package com.attornatus.AttornatusAPI.pessoa.application.api;
 
 import jakarta.validation.Valid;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
