@@ -38,7 +38,7 @@ public class PessoaController implements PessoaAPI {
     }
 
     @Override
-    public void putAlteraPessoa(UUID idPessoa, PessoaResquest pessoaResquest) {
+    public void patchAlteraPessoa(UUID idPessoa, PessoaResquest pessoaResquest) {
         log.info("[inicia] PessoaController - putAlteraPessoa");
         pessoaService.alteraPessoa(idPessoa,pessoaResquest);
         log.info("[finaliza] PessoaController - putAlteraPessoa");
