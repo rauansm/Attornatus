@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +19,7 @@ public class Pessoa {
     private UUID idPessoa;
     private String nome;
     private LocalDate dataNascimento;
-    @Embedded
-    private Endereco endereco;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa")
+    private List<Endereco> enderecos;
 
 }
