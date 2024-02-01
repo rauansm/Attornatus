@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -16,4 +17,8 @@ public interface PessoaAPI {
     @GetMapping(value = "/{idPessoa}")
     @ResponseStatus(code = HttpStatus.OK)
     PessoaResponse getPessoaAtravesId(@PathVariable UUID idPessoa);
+
+    @GetMapping
+    @ResponseStatus(code = HttpStatus.OK)
+    List<PessoaResponse> getTodasPessoas();
 }
