@@ -1,5 +1,6 @@
 package com.attornatus.AttornatusAPI.pessoa.dominio;
 
+import com.attornatus.AttornatusAPI.pessoa.application.api.PessoaResquest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -22,4 +23,9 @@ public class Pessoa {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa")
     private List<Endereco> enderecos;
 
+    public Pessoa(PessoaResquest pessoaResquest) {
+        this.idPessoa = idPessoa;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+    }
 }
