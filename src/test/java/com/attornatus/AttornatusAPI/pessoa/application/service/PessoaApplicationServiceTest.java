@@ -33,7 +33,7 @@ public class PessoaApplicationServiceTest {
 
 
     @Test
-    public void deveRetornarUmaPessoaNovaCriada() {
+    void deveRetornarUmaPessoaNovaCriada() {
     PessoaResquest resquest = DataHelper.getPessoaRequest();
 
     when(pessoaRepository.salva(any())).thenReturn(new Pessoa(resquest));
@@ -47,7 +47,7 @@ public class PessoaApplicationServiceTest {
     }
 
     @Test
-    public void deveRetornarListaDePessoas() {
+    void deveRetornarListaDePessoas() {
         List<Pessoa> pessoas = DataHelper.createListPessoa();
         when(pessoaRepository.listaTodasPessoas()).thenReturn(pessoas);
         List<PessoaResponse> pessoaResponses = pessoaApplicationService.listaTodasPessoas();
@@ -57,7 +57,7 @@ public class PessoaApplicationServiceTest {
     }
 
     @Test
-    public void deveRetornarRepresentacaoDePessoa(){
+    void deveRetornarRepresentacaoDePessoa(){
         Pessoa pessoa1 = DataHelper.createPessoa();
         UUID idPessoa = UUID.fromString("a713162f-20a9-4db9-a85b-90cd51ab18f4");
         when(pessoaRepository.buscaPessoaAtravesId(any(UUID.class))).thenReturn(pessoa1);
@@ -69,7 +69,7 @@ public class PessoaApplicationServiceTest {
     }
 
     @Test
-    public void deveAlterarUmaPessoa() {
+    void deveAlterarUmaPessoa() {
         PessoaResquest pessoaResquest = DataHelper.getPessoaRequest();
         UUID idPessoa = UUID.fromString("a713162f-20a9-4db9-a85b-90cd51ab18f4");
         Pessoa pessoa = DataHelper.createPessoa();
@@ -77,5 +77,5 @@ public class PessoaApplicationServiceTest {
         pessoaApplicationService.alteraPessoa(idPessoa,pessoaResquest);
         verify(pessoaRepository, times(1)).salva(pessoa);
     }
-    
+
 }
