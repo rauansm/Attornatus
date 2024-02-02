@@ -6,7 +6,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Value;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Value
 public class EnderecoResponse {
@@ -26,5 +28,11 @@ public class EnderecoResponse {
         this.numero = endereco.getNumero();
         this.cidade = endereco.getCidade();
         this.idPessoa = endereco.getPessoa().getIdPessoa();
+    }
+
+    public static List<EnderecoResponse> converte(List<Endereco> enderecos) {
+        return enderecos.stream()
+                .map(EnderecoResponse::new)
+                .collect(Collectors.toList());
     }
 }
