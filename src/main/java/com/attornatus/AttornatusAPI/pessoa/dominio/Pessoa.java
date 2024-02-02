@@ -3,9 +3,7 @@ package com.attornatus.AttornatusAPI.pessoa.dominio;
 import com.attornatus.AttornatusAPI.endereco.dominio.Endereco;
 import com.attornatus.AttornatusAPI.pessoa.application.api.PessoaResquest;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,7 +12,9 @@ import java.util.UUID;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
+@Builder
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
