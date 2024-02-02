@@ -10,4 +10,6 @@ public interface EnderecoService {
     EnderecoResponse criaEndereco(UUID idPessoa, EnderecoRequest enderecoRequest);
 
     List<EnderecoResponse> listaTodosEnderecosDaPessoa(UUID idPessoa);
+
+    void defineEnderecoPrincipal(UUID idPessoa, UUID idEndereco);
 }

@@ -22,7 +22,7 @@ public class Endereco {
    private String cep;
    private String numero;
    private String cidade;
-   private Boolean enderecoPrincipal = false;
+   private Boolean enderecoPrincipal ;
    @ManyToOne
    @JoinColumn(name = "pessoa_id")
    private Pessoa pessoa;
@@ -35,4 +35,8 @@ public class Endereco {
       this.cidade = enderecoRequest.getCidade();
       this.pessoa = pessoa;
    }
+
+    public void defineComoPrincipal() {
+      this.enderecoPrincipal = true;
+    }
 }

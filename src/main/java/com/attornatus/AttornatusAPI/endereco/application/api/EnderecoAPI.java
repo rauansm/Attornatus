@@ -18,4 +18,9 @@ public interface EnderecoAPI {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<EnderecoResponse> getTodosEnderecosDaPessoa(@PathVariable UUID idPessoa);
+
+    @PatchMapping("/{idEndereco}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void patchDefineEnderecoPrincipal(@PathVariable UUID idPessoa,
+                                      @PathVariable UUID idEndereco);
 }

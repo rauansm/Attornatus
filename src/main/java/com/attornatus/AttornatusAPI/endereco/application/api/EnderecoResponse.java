@@ -19,7 +19,7 @@ public class EnderecoResponse {
     private String numero;
     private String cidade;
     private UUID idPessoa;
-    private Boolean enderecoPrincipal = false;
+    private Boolean enderecoPrincipal;
 
     public EnderecoResponse(Endereco endereco) {
         this.idEndereco = endereco.getIdEndereco();
@@ -28,6 +28,7 @@ public class EnderecoResponse {
         this.numero = endereco.getNumero();
         this.cidade = endereco.getCidade();
         this.idPessoa = endereco.getPessoa().getIdPessoa();
+        this.enderecoPrincipal = endereco.getEnderecoPrincipal();
     }
 
     public static List<EnderecoResponse> converte(List<Endereco> enderecos) {

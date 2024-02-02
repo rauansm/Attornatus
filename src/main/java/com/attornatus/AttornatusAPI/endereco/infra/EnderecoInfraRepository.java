@@ -8,6 +8,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @Log4j2
@@ -28,5 +30,20 @@ public class EnderecoInfraRepository implements EnderecoRepository {
         List<Endereco> enderecos = enderecoSpringDataJPA.findAllByPessoa(pessoa);
         log.info("[finaliza] EnderecoInfraRepository - listaTodosEnderecosDaPessoa");
         return enderecos;
+    }
+
+    @Override
+    public Endereco buscaEnderecoDaPessoa(UUID idPessoa, UUID idEndereco) {
+        log.info("[inicia] EnderecoInfraRepository - buscaEnderecoDaPessoa");
+       Optional<Endereco> endereco = enderecoSpringDataJPA.findByPessoa(idPessoa,idEndereco);
+        log.info("[finaliza] EnderecoInfraRepository - buscaEnderecoDaPessoa");
+        return endereco.orElseThrow();
+    }
+
+    @Override
+    public void defineTodosComoFalse(Pessoa pessoa) {
+        log.info("[inicia] EnderecoInfraRepository - defineTodosComoFalse");
+        enderecoSpringDataJPA.defineTodosComoFalse(pessoa);
+        log.info("[finaliza] EnderecoInfraRepository - defineTodosComoFalse");
     }
 }
