@@ -18,8 +18,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Log4j2
 public class EnderecoApplicationSerivce implements EnderecoService {
+
     private final EnderecoRepository enderecoRepository;
     private final PessoaRepository pessoaRepository;
+    @Transactional
     @Override
     public EnderecoResponse criaEndereco(UUID idPessoa, EnderecoRequest enderecoRequest) {
         log.info("[inicia] EnderecoApplicationSerivce - criaEndereco");
@@ -37,12 +39,14 @@ public class EnderecoApplicationSerivce implements EnderecoService {
         log.info("[finaliza] EnderecoApplicationSerivce - listaTodosEnderecosDaPessoa");
         return EnderecoResponse.converte(enderecos);
     }
+
     public Endereco buscaEnderecoDaPessoa (UUID idPessoa, UUID idEndereco) {
         log.info("[inicia] EnderecoApplicationSerivce - listaTodosEnderecosDaPessoa");
         Endereco endereco = enderecoRepository.buscaEnderecoDaPessoa(idPessoa, idEndereco);
         log.info("[finaliza] EnderecoApplicationSerivce - listaTodosEnderecosDaPessoa");
         return endereco;
     }
+
     @Transactional
     @Override
     public void defineEnderecoPrincipal(UUID idPessoa, UUID idEndereco) {

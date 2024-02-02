@@ -1,9 +1,11 @@
 package com.attornatus.AttornatusAPI.pessoa.infra;
 
+import com.attornatus.AttornatusAPI.handler.APIException;
 import com.attornatus.AttornatusAPI.pessoa.application.repository.PessoaRepository;
 import com.attornatus.AttornatusAPI.pessoa.dominio.Pessoa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,7 +31,7 @@ public class PessoaInfraRepository implements PessoaRepository {
         log.info("[inicia] PessoaInfraRepository - buscaPessoaAtravesId");
         Optional<Pessoa> pessoa = pessoaSpringDataJPA.findById(idPessoa);
         log.info("[finaliza] PessoaInfraRepository - buscaPessoaAtravesId");
-        return pessoa.orElseThrow();
+        return pessoa.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Pessoa não encontrada!"));
     }
 
     @Override

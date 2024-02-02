@@ -2,9 +2,11 @@ package com.attornatus.AttornatusAPI.endereco.infra;
 
 import com.attornatus.AttornatusAPI.endereco.application.repository.EnderecoRepository;
 import com.attornatus.AttornatusAPI.endereco.dominio.Endereco;
+import com.attornatus.AttornatusAPI.handler.APIException;
 import com.attornatus.AttornatusAPI.pessoa.dominio.Pessoa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -37,7 +39,7 @@ public class EnderecoInfraRepository implements EnderecoRepository {
         log.info("[inicia] EnderecoInfraRepository - buscaEnderecoDaPessoa");
        Optional<Endereco> endereco = enderecoSpringDataJPA.findByPessoa(idPessoa,idEndereco);
         log.info("[finaliza] EnderecoInfraRepository - buscaEnderecoDaPessoa");
-        return endereco.orElseThrow();
+        return endereco.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Endereço não encontrado!"));
     }
 
     @Override
