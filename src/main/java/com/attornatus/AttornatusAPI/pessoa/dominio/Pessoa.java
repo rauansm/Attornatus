@@ -1,5 +1,6 @@
 package com.attornatus.AttornatusAPI.pessoa.dominio;
 
+import com.attornatus.AttornatusAPI.endereco.dominio.Endereco;
 import com.attornatus.AttornatusAPI.pessoa.application.api.PessoaResquest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
