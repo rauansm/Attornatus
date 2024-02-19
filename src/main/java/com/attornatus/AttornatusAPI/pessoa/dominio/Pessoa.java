@@ -29,4 +29,9 @@ public class Pessoa {
         this.nome = pessoaResquest.getNome();
         this.dataNascimento = pessoaResquest.getDataNascimento();
     }
+
+    public void altera(PessoaResquest pessoaResquest) {
+        this.nome = pessoaResquest.getNome();
+        this.dataNascimento = pessoaResquest.getDataNascimento();
+    }
 }

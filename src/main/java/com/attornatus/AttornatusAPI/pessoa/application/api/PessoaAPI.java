@@ -21,4 +21,9 @@ public interface PessoaAPI {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<PessoaResponse> getTodasPessoas();
+
+    @PatchMapping("/{idPessoa}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void patchAlteraPessoa(@PathVariable UUID idPessoa,
+            @Valid @RequestBody PessoaResquest pessoaResquest);
 }
