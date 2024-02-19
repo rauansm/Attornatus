@@ -10,4 +10,8 @@ public interface EnderecoRepository {
     Endereco salva(Endereco endereco);
 
     List<Endereco> listaTodosEnderecosDaPessoa(Pessoa pessoa);
+
+    Endereco buscaEnderecoDaPessoa(UUID idPessoa, UUID idEndereco);
+
+    void defineTodosComoFalse(Pessoa pessoa);
 }

@@ -9,6 +9,7 @@ import com.attornatus.AttornatusAPI.pessoa.dominio.Pessoa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,5 +36,22 @@ public class EnderecoApplicationSerivce implements EnderecoService {
         List<Endereco> enderecos = enderecoRepository.listaTodosEnderecosDaPessoa(pessoa);
         log.info("[finaliza] EnderecoApplicationSerivce - listaTodosEnderecosDaPessoa");
         return EnderecoResponse.converte(enderecos);
+    }
+    public Endereco buscaEnderecoDaPessoa (UUID idPessoa, UUID idEndereco) {
+        log.info("[inicia] EnderecoApplicationSerivce - listaTodosEnderecosDaPessoa");
+        Endereco endereco = enderecoRepository.buscaEnderecoDaPessoa(idPessoa, idEndereco);
+        log.info("[finaliza] EnderecoApplicationSerivce - listaTodosEnderecosDaPessoa");
+        return endereco;
+    }
+    @Transactional
+    @Override
+    public void defineEnderecoPrincipal(UUID idPessoa, UUID idEndereco) {
+        log.info("[inicia] EnderecoApplicationSerivce - defineEnderecoPrincipal");
+        Pessoa pessoa = pessoaRepository.buscaPessoaAtravesId(idPessoa);
+        Endereco endereco = buscaEnderecoDaPessoa(idPessoa,idEndereco);
+        enderecoRepository.defineTodosComoFalse(pessoa);
+        endereco.defineComoPrincipal();
+        enderecoRepository.salva(endereco);
+        log.info("[finaliza] EnderecoApplicationSerivce - defineEnderecoPrincipal");
     }
 }

@@ -29,4 +29,12 @@ public class EnderecoController implements EnderecoAPI{
         log.info("[finaliza] EnderecoController - getTodosEnderecosDaPessoa");
         return enderecos;
     }
+
+    @Override
+    public void patchDefineEnderecoPrincipal(UUID idPessoa, UUID idEndereco) {
+        log.info("[inicia] EnderecoController - patchDefineEnderecoPrincipal");
+        enderecoService.defineEnderecoPrincipal(idPessoa,idEndereco);
+        log.info("[finaliza] EnderecoController - patchDefineEnderecoPrincipal");
+
+    }
 }
