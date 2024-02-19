@@ -28,9 +28,6 @@ public class PessoaApplicationServiceTest {
     private PessoaApplicationService pessoaApplicationService;
     @Mock
     private Pessoa pessoa;
-    @InjectMocks
-    DataHelper dataHelper;
-
 
     @Test
     void deveRetornarUmaPessoaNovaCriada() {

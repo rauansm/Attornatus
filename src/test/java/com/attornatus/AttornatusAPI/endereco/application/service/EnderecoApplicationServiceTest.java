@@ -24,16 +24,15 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class EnderecoApplicationServiceTest {
-        @Mock
-        private EnderecoRepository enderecoRepository;
+    @Mock
+    private EnderecoRepository enderecoRepository;
     @InjectMocks
-        private EnderecoApplicationSerivce enderecoApplicationSerivce;
+    private EnderecoApplicationSerivce enderecoApplicationSerivce;
     @Mock
     private Endereco endereco;
     @Mock
     private PessoaRepository pessoaRepository;
-    @InjectMocks
-        DataHelper dataHelper;
+
 
         @Test
         void deveRetornarUmEnderecoNovoCriado() {
