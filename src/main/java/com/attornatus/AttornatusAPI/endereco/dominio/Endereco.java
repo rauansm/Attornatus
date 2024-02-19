@@ -7,7 +7,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.lang.annotation.Target;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

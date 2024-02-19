@@ -7,6 +7,7 @@ import com.attornatus.AttornatusAPI.pessoa.dominio.Pessoa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +17,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PessoaApplicationService implements PessoaService{
     private final PessoaRepository pessoaRepository;
+
+    @Transactional
     @Override
     public PessoaResponse criaNovaPessoa(PessoaResquest pessoaResquest) {
         log.info("[inicia] PessoaApplicationService - criaNovaPessoa");
@@ -40,6 +43,7 @@ public class PessoaApplicationService implements PessoaService{
         return PessoaResponse.converte(pessoas);
     }
 
+    @Transactional
     @Override
     public void alteraPessoa(UUID idPessoa, PessoaResquest pessoaResquest) {
         log.info("[inicia] PessoaApplicationService - alteraPessoa");
