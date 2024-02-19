@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,10 +21,19 @@ public class EnderecoApplicationSerivce implements EnderecoService {
     private final PessoaRepository pessoaRepository;
     @Override
     public EnderecoResponse criaEndereco(UUID idPessoa, EnderecoRequest enderecoRequest) {
-        log.info("[inicia] EnderecoController - criaEndereco");
+        log.info("[inicia] EnderecoApplicationSerivce - criaEndereco");
         Pessoa pessoa = pessoaRepository.buscaPessoaAtravesId(idPessoa);
         Endereco endereco = enderecoRepository.salva(new Endereco(pessoa,enderecoRequest));
-        log.info("[finaliza] EnderecoController - criaEndereco");
+        log.info("[finaliza] EnderecoApplicationSerivce - criaEndereco");
         return new EnderecoResponse(endereco);
+    }
+
+    @Override
+    public List<EnderecoResponse> listaTodosEnderecosDaPessoa(UUID idPessoa) {
+        log.info("[inicia] EnderecoApplicationSerivce - listaTodosEnderecosDaPessoa");
+        Pessoa pessoa = pessoaRepository.buscaPessoaAtravesId(idPessoa);
+        List<Endereco> enderecos = enderecoRepository.listaTodosEnderecosDaPessoa(pessoa);
+        log.info("[finaliza] EnderecoApplicationSerivce - listaTodosEnderecosDaPessoa");
+        return EnderecoResponse.converte(enderecos);
     }
 }
