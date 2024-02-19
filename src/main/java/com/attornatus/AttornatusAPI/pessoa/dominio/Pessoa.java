@@ -1,11 +1,13 @@
 package com.attornatus.AttornatusAPI.pessoa.dominio;
 
+import com.attornatus.AttornatusAPI.pessoa.application.api.PessoaResquest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,6 +22,11 @@ public class Pessoa {
     private String nome;
     private LocalDate dataNascimento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pessoa")
-    private List<Endereco> enderecos;
+    private List<Endereco> enderecos = new ArrayList<>();
 
+    public Pessoa(PessoaResquest pessoaResquest) {
+        this.idPessoa = UUID.randomUUID();
+        this.nome = pessoaResquest.getNome();
+        this.dataNascimento = pessoaResquest.getDataNascimento();
+    }
 }
