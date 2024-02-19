@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,5 +30,13 @@ public class PessoaApplicationService implements PessoaService{
         Pessoa pessoa = pessoaRepository.buscaPessoaAtravesId(idPessoa);
         log.info("[finaliza] PessoaApplicationService - buscaPessoaAtravesId");
         return new PessoaResponse(pessoa);
+    }
+
+    @Override
+    public List<PessoaResponse> listaTodasPessoas() {
+        log.info("[inicia] PessoaApplicationService - listaTodasPessoas");
+        List<Pessoa> pessoas = pessoaRepository.listaTodasPessoas();
+        log.info("[finaliza] PessoaApplicationService - listaTodasPessoas");
+        return PessoaResponse.converte(pessoas);
     }
 }
